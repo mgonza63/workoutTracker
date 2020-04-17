@@ -22,13 +22,6 @@ module.exports = function (app) {
                 res.json(err)
             })
     });
-    app.get("/api/workouts/range", (req, res) => {
-        Workout.find({}).then(data => {
-            res.json(data)
-        }).catch(err => {
-          res.send(err);
-        });
-      });
     
       app.put("/api/workouts/:id", (req, res) => {
         Workout.collection.updateOne(
@@ -48,7 +41,14 @@ module.exports = function (app) {
             }
           });
         });
-}
+        app.get("/api/workouts/range", (req, res) => {
+            Workout.find({}).then(data => {
+                res.json(data)
+            }).catch(err => {
+              res.send(err);
+            });
+          });
+};
 
 
 
